@@ -23,7 +23,7 @@ class AWidget(Object):
         Object.__init__(self)
 
         if item is None:
-            raise NotImplementedError('Creating a backend gui item is not yet supported') #TODO
+            item = self._create_item()
 
         self.item = item
         self.check_type()
@@ -40,6 +40,9 @@ class AWidget(Object):
 
     def emit_context_menu(self, *args):
         self.context_menu.emit(*args)
+
+    def _create_item(self):
+        raise NotImplementedError('Creating a backend gui item is not yet supported') #TODO
 
     def check_type(self):
         if hasattr(self, 'type') and self.item.__class__.__name__ != self.type:
