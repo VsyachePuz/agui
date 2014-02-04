@@ -23,7 +23,6 @@ class TreeView(Widget, ATreeView):
     _column_id = 0
     _column_background = 1
     _column_tooltip = 2
-    _column_start = 2
 
     def __init__(self, item = None):
         ATreeView.__init__(self, item)
@@ -47,17 +46,6 @@ class TreeView(Widget, ATreeView):
         row.extend(data)
 
         return self.tree_store_gtk.append(parent, row)
-
-    def add_column(self, name):
-        cell = Gtk.CellRendererText()
-        cell.set_property('background-set' , True)
-
-        self._column_start += 1
-        col = Gtk.TreeViewColumn(name, cell, text=self._column_start, background=1)
-        col.set_min_width(10)
-        col.set_resizable(True)
-        col.set_spacing(0)
-        self.item.append_column(col)
 
     def clear(self):
         self.tree_store_gtk.clear()

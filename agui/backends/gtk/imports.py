@@ -15,7 +15,7 @@
 ### END LICENSE
 
 try:
-    from gi.repository import Gtk, Gdk, GObject, Notify, AppIndicator3, Gst
+    from gi.repository import Gtk, Gdk, Gio, GObject, Notify, AppIndicator3, Gst
     Gst.init(None)
 except:
     pass

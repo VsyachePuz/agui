@@ -16,6 +16,7 @@
 
 from agui.awidgets.widget import AWidget
 
+from agui.awidgets.action import AAction
 from agui.awidgets.button import AButton
 from agui.awidgets.checkbox import ACheckBox
 from agui.awidgets.combobox import AComboBox

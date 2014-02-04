@@ -14,26 +14,32 @@
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 ### END LICENSE
 
+from agui import Signal
 from agui.awidgets import AWidget
 
-class ATreeView(AWidget):
+class AAction(AWidget):
     def __init__(self, item = None):
-        self._selected = None
+        self._text = ''
+        self._icon = ''
+        self.activated = Signal()
+
         AWidget.__init__(self, item)
 
+    def emit_activated(self, *args):
+        self.activated.emit()
+
     @property
-    def selected(self):
-        return self._selected
+    def text(self):
+        return self._text
 
-    @selected.setter
-    def selected(self, value):
-        self._selected = value
+    @text.setter
+    def text(self, value):
+        self._text = value
 
-    def add_row(self, id, data, tooltip = '', color = '', parent = None):
-        raise NotImplementedError()
+    @property
+    def icon(self):
+        return self._icon
 
-    def clear(self):
-        raise NotImplementedError()
-
-    def expand_all(self):
-        raise NotImplementedError()
+    @icon.setter
+    def icon(self, value):
+        self._icon = value

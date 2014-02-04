@@ -15,6 +15,8 @@
 ### END LICENSE
 
 from agui.backends.pyside.widgets.widget import Widget
+
+from agui.backends.pyside.widgets.action import Action
 from agui.backends.pyside.widgets.button import Button
 from agui.backends.pyside.widgets.checkbox import CheckBox
 from agui.backends.pyside.widgets.combobox import ComboBox

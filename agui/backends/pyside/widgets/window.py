@@ -85,5 +85,8 @@ class Window(AWindow):
         self._ok_to_close = True
         self.item.close()
 
+    def resize(self, width, height):
+        self.item.resize(width, height)
+
     def replace(self, old, new):
         raise NotImplementedError('replace has not yet been implemented') #TODO

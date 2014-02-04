@@ -14,7 +14,6 @@
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 ### END LICENSE
 
-from agui import APP
 from agui.awidgets import AButton
 from agui.backends.pyside.widgets import Widget
 

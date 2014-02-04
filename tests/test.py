@@ -84,9 +84,6 @@ def textarea(window):
     assert (window.widgets.test_textarea.text == 'asdf'), 'Text area should be "asdf"'
 
 def treeview(window): #TODO: assert something in here
-    window.widgets.test_treeview.add_column('asdf')
-    window.widgets.test_treeview.add_column('asdf2')
-    window.widgets.test_treeview.add_column('asdf3')
     window.widgets.test_treeview.add_row(0, ['a', 'b', 'c'], 'tooltip1', '#AAAAAA')
     window.widgets.test_treeview.add_row(1, ['d', 'e', 'f'], 'tooltip2', '#FFFFFF')
 
@@ -127,13 +124,12 @@ def main():
 
     parser.add_argument('--gtk', action='store_true', default=False)
     parser.add_argument('--pyside', action='store_true', default=False)
-
     args = parser.parse_args()
 
     window = None
     if args.gtk:
         window = setup_gui(agui.APP.GTK, 'test_gtk.ui')
-    if args.pyside:
+    elif args.pyside:
         window = setup_gui(agui.APP.PYSIDE, 'test_qt.ui')
     else:
         raise RuntimeError('no gui specified')
@@ -147,6 +143,8 @@ def main():
     window.widgets.test_slider.changed.connect(slider_slot)
     window.widgets.test_spinbox.changed.connect(spinbox_slot)
     window.widgets.test_textarea.changed.connect(textarea_slot)
+
+    treeview(window)
 
     window.show()
     agui.APP.run()

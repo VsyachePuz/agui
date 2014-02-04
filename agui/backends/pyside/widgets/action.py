@@ -14,26 +14,28 @@
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 ### END LICENSE
 
-from agui.awidgets import AWidget
+from agui.awidgets import AAction
+from agui.backends.pyside.widgets import Widget
 
-class ATreeView(AWidget):
+class Action(Widget, AAction):
+    type = 'QAction'
+
     def __init__(self, item = None):
-        self._selected = None
-        AWidget.__init__(self, item)
+        AAction.__init__(self, item)
 
-    @property
-    def selected(self):
-        return self._selected
+        self.item.triggered.connect(self.emit_activated)
 
-    @selected.setter
-    def selected(self, value):
-        self._selected = value
+    @AAction.text.getter
+    def text(self):
+        self._text = self.item.text()
+        return self._text
 
-    def add_row(self, id, data, tooltip = '', color = '', parent = None):
-        raise NotImplementedError()
+    @text.setter
+    def text(self, value):
+        self.item.setText(value)
+        self._text = value
 
-    def clear(self):
-        raise NotImplementedError()
-
-    def expand_all(self):
-        raise NotImplementedError()
+    @AAction.icon.setter
+    def icon(self, value):
+        self.item.setIcon(value.icon())
+        self._icon = value

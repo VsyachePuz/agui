@@ -61,6 +61,9 @@ class AWindow(Object):
     def close(self):
         raise NotImplementedError()
 
+    def resize(self, width, height):
+        raise NotImplementedError()
+
     def replace(self, old, new):
         raise NotImplementedError()
 

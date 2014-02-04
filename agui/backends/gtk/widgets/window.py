@@ -64,6 +64,9 @@ class Window(AWindow):
     def close(self):
         self.item.destroy()
 
+    def resize(self, width, height):
+        self.item.resize(width, height)
+
     def replace(self, old, new):
         parent = old.get_parent()
         if not parent:

@@ -15,6 +15,8 @@
 ### END LICENSE
 
 from agui.backends.gtk.widgets.widget import Widget
+
+from agui.backends.gtk.widgets.action import Action
 from agui.backends.gtk.widgets.button import Button
 from agui.backends.gtk.widgets.checkbox import CheckBox
 from agui.backends.gtk.widgets.combobox import ComboBox

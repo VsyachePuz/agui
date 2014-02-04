@@ -19,3 +19,5 @@ APP = App()
 
 from agui.object import Object
 from agui.signal import Signal
+
+__version__ = '0.1'

@@ -53,9 +53,6 @@ class TreeView(Widget, ATreeView):
         if parent is None:
             self.item.addTopLevelItem(row)
 
-    def add_column(self, name):
-        pass #Nothing to do here, these get setup in the ui file
-
     def clear(self):
         self.item.clear()
 

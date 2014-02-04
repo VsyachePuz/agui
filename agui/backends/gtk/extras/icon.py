@@ -36,3 +36,13 @@ class Icon(AIcon):
             self.item.set_from_file(self.fallback)
 
         return self.item
+
+    def _gicon(self):
+        self._gitem = None
+
+        if self._use_fallback:
+            self._gitem = Gio.FileIcon(Gio.File(self.fallback))
+        else:
+            self._gitem = Gio.ThemedIcon(self.name)
+
+        return self._gitem
