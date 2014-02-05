@@ -17,10 +17,14 @@
 from agui import Object
 
 class ATimeout(Object):
-    def __init__(self, seconds, function):
+    def __init__(self, seconds, function, *args):
         self.item = None
         self.seconds = seconds
         self.function = function
+        self.args = args
+
+    def _function(self):
+        self.function(*self.args)
 
     def start(self):
         if self.item is not None:

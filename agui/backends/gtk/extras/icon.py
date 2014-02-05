@@ -19,7 +19,9 @@ from agui.backends.gtk.imports import *
 
 class Icon(AIcon):
     def __init__(self, name, fallback = ''):
-        self._use_fallback = not Gtk.IconTheme.has_icon(self.name)
+        AIcon.__init__(self, name, fallback)
+
+        self._use_fallback = not Gtk.IconTheme().has_icon(name)
 
     def icon(self, size = None):
         self.item = Gtk.Image()

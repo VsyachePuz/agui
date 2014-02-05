@@ -14,9 +14,9 @@
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 ### END LICENSE
 
-from agui.awidgets import ASound
+from agui.aextras import ASound
 from agui.backends.gtk.imports import *
-from agui.backends.gtk.extras import Timeout
+from agui.backends.gtk.extras.timeout import Timeout
 
 class Sound(ASound):
     def __init__(self, filename, times_to_play = 1):

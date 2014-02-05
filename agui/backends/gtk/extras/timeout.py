@@ -19,9 +19,9 @@ from agui.backends.gtk.imports import *
 
 class Timeout(ATimeout):
     def start(self):
-        ATimeout.start()
-        self.item = GObject.timeout_add(1000 * self.seconds, self.function)
+        ATimeout.start(self)
+        self.item = GObject.timeout_add(1000 * self.seconds, self._function)
 
     def stop(self):
-        ATimeout.stop()
+        ATimeout.stop(self)
         GObject.source_remove(self.item)

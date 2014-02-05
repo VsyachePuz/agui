@@ -19,3 +19,4 @@ from agui.aextras.icon import AIcon
 from agui.aextras.message import AMessage
 from agui.aextras.popup import APopup
 from agui.aextras.sound import ASound
+from agui.aextras.timeout import ATimeout

@@ -19,9 +19,9 @@ from agui.aextras import ATimeout
 
 class Timeout(ATimeout):
     def start(self):
-        ATimeout.start()
-        self.item = QtCore.QTimer.singleShot(1000 * self.seconds, self.function)
+        ATimeout.start(self)
+        self.item = QtCore.QTimer.singleShot(1000 * self.seconds, self._function)
 
     def stop(self):
-        ATimeout.stop()
+        ATimeout.stop(self)
         self.item.stop()

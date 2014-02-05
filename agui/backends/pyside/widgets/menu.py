@@ -28,6 +28,7 @@ class Menu(Widget, AMenu):
 
     def _create_item(self):
         self.item = QtGui.QMenu()
+        return self.item
 
     def append(self, text, icon = None):
         if icon is None:

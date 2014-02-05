@@ -26,6 +26,7 @@ class Menu(Widget, AMenu):
 
     def _create_item(self):
         self.item = Gtk.Menu()
+        return self.item
 
     def append(self, text, icon = None):
         menu_item = None

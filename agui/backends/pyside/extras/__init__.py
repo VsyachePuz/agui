@@ -15,7 +15,8 @@ f# -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 ### END LICENSE
 
-rom agui.backends.pyside.extras.icon import Icon
+from agui.backends.pyside.extras.icon import Icon
 from agui.backends.pyside.extras.message import Message
 from agui.backends.pyside.extras.popup import Popup
 from agui.backends.pyside.extras.sound import Sound
+from agui.backends.pyside.extras.timeout import Timeout

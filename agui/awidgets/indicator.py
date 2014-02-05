@@ -29,7 +29,7 @@ class AIndicator(AWidget):
 
         self.triggered = Signal()
 
-        AWidget.__init__(self, self._create_item)
+        AWidget.__init__(self, self._create_item())
 
     def _create_item(self):
         raise NotImplementedError()

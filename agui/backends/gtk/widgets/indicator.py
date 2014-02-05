@@ -25,7 +25,7 @@ class Indicator(Widget, AIndicator):
         self._menu.triggered.connect(self.emit_triggered)
 
     def _create_item(self):
-        self.item = AppIndicator3.Indicator.new(self.name, self._passive_icon.name(), AppIndicator3.IndicatorCategory.APPLICATION_STATUS)
+        self.item = AppIndicator3.Indicator.new(self._name, self._passive_icon.name(), AppIndicator3.IndicatorCategory.APPLICATION_STATUS)
         self.item.set_status(AppIndicator3.IndicatorStatus.ACTIVE)
 
         self.item.set_icon(self._passive_icon.name())
@@ -33,6 +33,8 @@ class Indicator(Widget, AIndicator):
 
         self._menu.hide()
         self.item.set_menu(self._menu.item)
+
+        return self.item
 
     @AIndicator.attention.getter
     def attention(self):
@@ -59,7 +61,7 @@ class Indicator(Widget, AIndicator):
             if self.item.get_status() != AppIndicator3.IndicatorStatus.PASSIVE:
                 self.item.set_status(AppIndicator3.IndicatorStatus.PASSIVE)
         else:
-            self.attention(True)
+            self.attention = True
         self._hidden = value
 
     @AIndicator.attention_icon.setter

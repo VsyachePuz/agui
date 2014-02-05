@@ -14,7 +14,7 @@
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 ### END LICENSE
 
-from agui.awidgets import ASound
+from agui.aextras import ASound
 from agui.backends.pyside.imports import *
 from agui.backends.pyside.extras import Timeout
 
