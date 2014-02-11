@@ -22,6 +22,6 @@ class Message(AMessage):
         message2 = "<b>%s</b><br/><br/>%s" % (title, message)
         self.message(window_title, message2, icon)
 
-    def message(self, window_title, message, icon):
+    def message_alt(self, window_title, message, icon):
         self.dialog = QtGui.QMessageBox(icon.icon(), window_title, message, QtGui.QMessageBox.Close)
         self.dialog.show()

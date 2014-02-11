@@ -47,6 +47,16 @@ class Window(AWindow):
 
         self.item.connect('delete-event', self.emit_closed)
 
+    @AWindow.title.getter
+    def title(self):
+        self._title = self.item.get_title()
+        return self._title
+
+    @title.setter
+    def title(self, value):
+        self.item.set_title(value)
+        self._title = value
+
     @AWindow.hidden.getter
     def hidden(self):
         self._hidden = self.item.get_visible()

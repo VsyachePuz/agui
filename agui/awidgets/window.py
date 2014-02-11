@@ -35,6 +35,7 @@ class AWindow(Object):
 
         self._builder = None
         self._hidden = False
+        self._title = ''
 
         self.item = None
         self.widgets = AttrDict()
@@ -43,6 +44,14 @@ class AWindow(Object):
         self.classes = find_classes(agui.widgets)
 
         self.closed = Signal()
+
+    @property
+    def title(self):
+        return self._title
+
+    @title.setter
+    def title(self, value):
+        self._title = value
 
     @property
     def hidden(self):

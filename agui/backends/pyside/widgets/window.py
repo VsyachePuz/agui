@@ -67,6 +67,16 @@ class Window(AWindow):
 
         return children
 
+    @AWindow.title.getter
+    def title(self):
+        self._title = self.item.windowTitle()
+        return self._title
+
+    @title.setter
+    def title(self, value):
+        self.item.setWindowTitle(value)
+        self._title = value
+
     @property
     def hidden(self):
         self._hidden = self.item.isHidden()

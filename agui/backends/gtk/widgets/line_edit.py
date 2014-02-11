@@ -46,7 +46,7 @@ class LineEdit(Widget, ALineEdit):
         self.item.grab_focus()
 
     def hide_error(self):
-        self._last_error_gtk = self.item.get_icon_name()
+        self._last_error_gtk = self.item.get_icon_name(0)
         self.item.set_icon_from_icon_name(0, None)
 
     def show_error(self, name = None):
