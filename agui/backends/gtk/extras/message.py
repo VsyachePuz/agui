@@ -18,15 +18,29 @@ from agui.aextras import AMessage
 from agui.backends.gtk.imports import *
 
 class Message(AMessage):
-    def message(self, window_title, title, message, icon):
-        dialog = Gtk.MessageDialog(flags=Gtk.DialogFlags.MODAL, message_format=title)
+    def message(self, window_title, title, message, icon, parent=None):
+        dialog = Gtk.MessageDialog(flags=Gtk.DialogFlags.MODAL, message_format=title, parent=parent)
         dialog.set_image(icon.icon(icon.size_dialog))
         dialog.set_title(window_title)
         dialog.format_secondary_text(message)
         dialog.show()
 
-    def message_alt(self, window_title, message, icon):
-        dialog = Gtk.MessageDialog(flags=Gtk.DialogFlags.MODAL, message_format=message)
+    def message_alt(self, window_title, message, icon, parent=None):
+        dialog = Gtk.MessageDialog(flags=Gtk.DialogFlags.MODAL, message_format=message, parent=parent)
         dialog.set_image(icon.icon(icon.size_dialog))
         dialog.set_title(window_title)
         dialog.show()
+
+    def yes_no(self, window_title, message, parent=None):
+        dialog = Gtk.MessageDialog(parent, Gtk.DialogFlags.MODAL,
+            Gtk.MessageType.WARNING, Gtk.ButtonsType.YES_NO, message)
+        dialog.set_title(window_title)
+
+        ans = dialog.run()
+        dialog.destroy()
+
+        value = self.no
+        if ans == -8:
+            value = self.yes
+
+        return value

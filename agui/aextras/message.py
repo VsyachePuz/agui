@@ -17,8 +17,14 @@
 from agui import Object
 
 class AMessage(Object):
-    def message(self, window_title, title, message, icon):
+    yes = True
+    no = False
+
+    def message(self, window_title, title, message, icon, parent=None):
         raise NotImplementedError()
 
-    def message_alt(self, window_title, message, icon):
+    def message_alt(self, window_title, message, icon, parent=None):
+        raise NotImplementedError()
+
+    def yes_no(self, window_title, message, parent=None):
         raise NotImplementedError()

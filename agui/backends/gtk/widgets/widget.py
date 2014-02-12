@@ -38,8 +38,12 @@ class Widget(AWidget):
 
         self._hidden = value
 
-    def enable(self):
-        self.item.set_sensitive(True)
+    @AWidget.enabled.getter
+    def enabled(self):
+        self._enabled = self.get_sensitive()
+        return self._enabled
 
-    def disable(self):
-        self.item.set_sensitive(False)
+    @enabled.setter
+    def enabled(self, value):
+        self.item.set_sensitive(value)
+        self._enabled = value

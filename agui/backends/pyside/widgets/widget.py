@@ -50,8 +50,16 @@ class Widget(AWidget):
 
         self._hidden = value
 
-    def enable(self):
-        self.item.enable()
+    @AWidget.enabled.getter
+    def enabled(self):
+        self._enabled = self.item.isEnabled()
+        return self._enabled
 
-    def disable(self):
-        self.item.disable()
+    @enabled.setter
+    def enabled(self, value):
+        if value:
+            self.item.enable()
+        else:
+            self.item.disable()
+
+        self._enabled = value

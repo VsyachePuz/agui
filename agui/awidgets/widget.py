@@ -19,6 +19,7 @@ from agui import Object, Signal
 class AWidget(Object):
     def __init__(self, item = None):
         self._hidden = False
+        self._enabled = True
 
         Object.__init__(self)
 
@@ -62,10 +63,18 @@ class AWidget(Object):
     def show(self):
         self.hidden = False
 
+    @property
+    def enabled(self):
+        return self._enabled
+
+    @enabled.setter
+    def enabled(self, value):
+        self._enabled = value
+
     def enable(self):
-        raise NotImplementedError()
+        self.enabled = True
 
     def disable(self):
-        raise NotImplementedError()
+        self.enabled = False
 
 #TODO: more stuff like right click?
