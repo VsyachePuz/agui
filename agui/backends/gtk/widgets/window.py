@@ -20,8 +20,8 @@ from agui.helpers import AttrDict
 from xml.etree.cElementTree import ElementTree
 
 class Window(AWindow):
-    def __init__(self, type, name, file):
-        AWindow.__init__(self, type, name, file)
+    def __init__(self, name, file):
+        AWindow.__init__(self, name, file)
 
         self.builder = Gtk.Builder()
         self.builder.add_from_file(self.file)
@@ -43,7 +43,7 @@ class Window(AWindow):
             if type in self.types:
                 self.widgets[name] = self.types[type](widget)
             else:
-                self.other_widgets[name] = AttrDict(widget=widget, type=type)
+                self.other_widgets[name] = widget
 
         self.item.connect('delete-event', self.emit_closed)
 
@@ -76,11 +76,3 @@ class Window(AWindow):
 
     def resize(self, width, height):
         self.item.resize(width, height)
-
-    def replace(self, old, new):
-        parent = old.get_parent()
-        if not parent:
-            raise RuntimeError('No parent for old widget')
-
-        parent.remove(old)
-        parent.add(new)

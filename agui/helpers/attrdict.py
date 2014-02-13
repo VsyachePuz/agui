@@ -27,6 +27,9 @@ class AttrDict(object):
     def __getitem__(self, key):
         return self._dict[key]
 
+    def __delitem__(self, key):
+        del self._dict[key]
+
     def __setattr__(self, key, value):
         if key != '_dict':
             self._dict[key] = value
@@ -38,3 +41,12 @@ class AttrDict(object):
             return self._dict[key]
         else:
             return object.__getattr__(self, key)
+
+    def __delattr__(self, key):
+        if key != '_dict':
+            del self._dict[key]
+        else:
+            object.__delattr__(self, key)
+
+    def __contains__(self, key):
+        return (key in self._dict)

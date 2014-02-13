@@ -20,18 +20,14 @@ from agui.helpers import AttrDict
 from agui.helpers.functions import find_classes
 
 class AWindow(Object):
-    MAIN_WINDOW = 'main_window'
-    DIALOG = 'dialog'
-
     def emit_closed(self, *args):
         self.closed.emit()
 
-    def __init__(self, type, name, file):#TODO pass signal handlers
+    def __init__(self, name, file):#TODO pass signal handlers
         Object.__init__(self)
 
         self.file = file
         self.name = name
-        self.type = type
 
         self._builder = None
         self._hidden = False
@@ -73,14 +69,21 @@ class AWindow(Object):
     def resize(self, width, height):
         raise NotImplementedError()
 
-    def replace(self, old, new):
-        raise NotImplementedError()
+    def promote(self, name, clss):
+        widget = None
+        if name in self.widgets:
+            widget = self.widgets[name].item
+            del self.widgets[name]
+        elif name in self.other_widgets:
+            widget = self.other_widgets[name]
+            del self.other_widgets[name]
+        else:
+            raise KeyError('%s not a widget in this window' % (name))
 
-    def chooser(self, name, chooser_class):
-        button = self.widgets[name]
-        if button.__class__.__name__ != 'Button':
-            raise TypeError('%s is not a button' % name)
+        if not hasattr(clss, 'promote_type'):
+            raise TypeError('cannot promote to %s' % (clss.__class__.__name__))
 
-        chooser = chooser_class()
-        self.replace(button, chooser)
-        self.widgets[name] = chooser
+        if widget.__class__.__name__ != clss.promote_type:
+            raise TypeError('widget is not of type %s, it is %s' % (widget.__class__.__name__, clss.promote_type))
+
+        self.widgets[name] = clss(widget)

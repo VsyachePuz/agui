@@ -20,6 +20,7 @@ from agui.backends.pyside.widgets.action import Action
 from agui.backends.pyside.widgets.button import Button
 from agui.backends.pyside.widgets.checkbox import CheckBox
 from agui.backends.pyside.widgets.combobox import ComboBox
+from agui.backends.pyside.widgets.file_chooser import FileChooser
 from agui.backends.pyside.widgets.indicator import Indicator
 from agui.backends.pyside.widgets.label import Label
 from agui.backends.pyside.widgets.line_edit import LineEdit

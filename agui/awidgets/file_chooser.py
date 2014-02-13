@@ -14,19 +14,41 @@
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 ### END LICENSE
 
-from agui.awidgets.widget import AWidget
+from agui.awidgets import AWidget
 
-from agui.awidgets.action import AAction
-from agui.awidgets.button import AButton
-from agui.awidgets.checkbox import ACheckBox
-from agui.awidgets.combobox import AComboBox
-from agui.awidgets.file_chooser import AFileChooser
-from agui.awidgets.indicator import AIndicator
-from agui.awidgets.label import ALabel
-from agui.awidgets.line_edit import ALineEdit
-from agui.awidgets.menu import AMenu
-from agui.awidgets.slider import ASlider
-from agui.awidgets.spinbox import ASpinBox
-from agui.awidgets.text_area import ATextArea
-from agui.awidgets.tree_view import ATreeView
-from agui.awidgets.window import AWindow
+class AFileChooser(AWidget):
+    def __init__(self, item):
+        self._file = ''
+        self._dir = ''
+        self._title = ''
+        AWidget.__init__(self, item)
+
+    @property
+    def file(self):
+        return self._file
+
+    @file.setter
+    def file(self, value):
+        self._file = value
+
+    @property
+    def dir(self):
+        return self._dir
+
+    @dir.setter
+    def dir(self, value):
+        self._dir = value
+
+    @property
+    def title(self):
+        return self._title
+
+    @title.setter
+    def title(self, value):
+        self._title = value
+
+    def add_type(self, type):
+        raise NotImplementedError()
+
+    def clear(self):
+        raise NotImplementedError()

@@ -20,8 +20,8 @@ from agui.helpers import AttrDict
 from xml.etree.cElementTree import ElementTree
 
 class Window(AWindow):
-    def __init__(self, type, name, file):
-        AWindow.__init__(self, type, name, file)
+    def __init__(self, name, file):
+        AWindow.__init__(self, name, file)
         self._ok_to_close = False
 
         self.builder = QtUiTools.QUiLoader()
@@ -39,7 +39,7 @@ class Window(AWindow):
             if type in self._types:
                 self.widgets[name] = self._types[type](child)
             else:
-                self.other_widgets[name] = AttrDict(widget=child, type=type)
+                self.other_widgets[name] = child
 
         self.item.closeEvent = self._build_close_event()
 
@@ -97,6 +97,3 @@ class Window(AWindow):
 
     def resize(self, width, height):
         self.item.resize(width, height)
-
-    def replace(self, old, new):
-        raise NotImplementedError('replace has not yet been implemented') #TODO

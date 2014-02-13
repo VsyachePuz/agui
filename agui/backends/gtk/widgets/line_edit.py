@@ -26,6 +26,15 @@ class LineEdit(Widget, ALineEdit):
         self.item.connect('changed', self.emit_changed)
         self.item.connect('icon-release', self._button_gtk)
 
+        self._last_error_gtk = None
+
+    @ALineEdit.has_error.setter
+    def has_error(self, value):
+        self._has_error = value
+
+        if self._has_error:
+            self._last_error_gtk = self.item.get_icon_name(0)
+
     def _button_gtk(self, widget, pos, event, data = None):
         if pos == 1 and self.has_clear:
             self.clear()
@@ -46,11 +55,11 @@ class LineEdit(Widget, ALineEdit):
         self.item.grab_focus()
 
     def hide_error(self):
-        self._last_error_gtk = self.item.get_icon_name(0)
         self.item.set_icon_from_icon_name(0, None)
 
     def show_error(self, name = None):
         if name is not None:
+            self._last_error_gtk = name
             self.item.set_icon_from_icon_name(0, name)
         else:
             self.item.set_icon_from_icon_name(0, self._last_error_gtk)

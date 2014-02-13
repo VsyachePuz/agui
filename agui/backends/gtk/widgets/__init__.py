@@ -20,6 +20,7 @@ from agui.backends.gtk.widgets.action import Action
 from agui.backends.gtk.widgets.button import Button
 from agui.backends.gtk.widgets.checkbox import CheckBox
 from agui.backends.gtk.widgets.combobox import ComboBox
+from agui.backends.gtk.widgets.file_chooser import FileChooser
 from agui.backends.gtk.widgets.indicator import Indicator
 from agui.backends.gtk.widgets.label import Label
 from agui.backends.gtk.widgets.line_edit import LineEdit
