@@ -18,6 +18,7 @@ from agui.aextras import APopup
 from agui.backends.gtk.imports import *
 
 class Popup(APopup):
-    def popup(self, title, message, icon):
-        n = Notify.Notification.new(title, message, icon)
+    def popup(self, app, title, message, icon):
+        Notify.init(app)
+        n = Notify.Notification.new(title, message, icon.name())
         n.show()

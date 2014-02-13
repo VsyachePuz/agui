@@ -17,5 +17,5 @@
 from agui import Object
 
 class APopup(Object):
-    def popup(self, title, message, icon):
+    def popup(self, app, title, message, icon):
         raise NotImplementedError()
