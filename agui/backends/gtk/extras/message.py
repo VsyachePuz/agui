@@ -18,22 +18,31 @@ from agui.aextras import AMessage
 from agui.backends.gtk.imports import *
 
 class Message(AMessage):
+    def _destroy(self, widget, *args):
+        widget.destroy()
+
     def message(self, window_title, title, message, icon, parent=None):
-        dialog = Gtk.MessageDialog(flags=Gtk.DialogFlags.MODAL, message_format=title, parent=parent)
+        dialog = Gtk.MessageDialog(parent, Gtk.DialogFlags.MODAL,
+            Gtk.MessageType.INFO, Gtk.ButtonsType.OK, title)
         dialog.set_image(icon.icon(icon.size_dialog))
         dialog.set_title(window_title)
         dialog.format_secondary_text(message)
+
+        dialog.connect('response', self._destroy)
         dialog.show()
 
     def message_alt(self, window_title, message, icon, parent=None):
-        dialog = Gtk.MessageDialog(flags=Gtk.DialogFlags.MODAL, message_format=message, parent=parent)
+        dialog = Gtk.MessageDialog(parent, Gtk.DialogFlags.MODAL,
+            Gtk.MessageType.INFO, Gtk.ButtonsType.OK, message)
         dialog.set_image(icon.icon(icon.size_dialog))
         dialog.set_title(window_title)
+
+        dialog.connect('response', self._destroy)
         dialog.show()
 
     def yes_no(self, window_title, message, parent=None):
         dialog = Gtk.MessageDialog(parent, Gtk.DialogFlags.MODAL,
-            Gtk.MessageType.WARNING, Gtk.ButtonsType.YES_NO, message)
+            Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO, message)
         dialog.set_title(window_title)
 
         ans = dialog.run()

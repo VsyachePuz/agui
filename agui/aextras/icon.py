@@ -24,7 +24,7 @@ class AIcon(Object):
     def __init__(self, name, fallback = ''): #TODO: add font awesome icons
         self._name = name
         self._fallback = fallback
-        self.icon = None
+        self.item = None
         self._use_fallback = False
 
     def name(self):

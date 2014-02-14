@@ -27,16 +27,17 @@ class Icon(AIcon):
         self.item = Gtk.Image()
 
         if self._use_fallback:
+            self.item.set_from_file(self._fallback)
+        else:
             size2 = Gtk.IconSize.BUTTON
             if size == self.size_menu:
                 size2 = Gtk.IconSize.MENU
             elif size == self.size_dialog:
                 size2 = Gtk.IconSize.DIALOG
 
-            self.item.set_from_icon_name(self.name, size2)
-        else:
-            self.item.set_from_file(self.fallback)
+            self.item.set_from_icon_name(self._name, size2)
 
+        self.item.show()
         return self.item
 
     def _gicon(self):
@@ -45,6 +46,6 @@ class Icon(AIcon):
         if self._use_fallback:
             self._gitem = Gio.FileIcon(Gio.File(self.fallback))
         else:
-            self._gitem = Gio.ThemedIcon(self.name)
+            self._gitem = Gio.ThemedIcon(self._name)
 
         return self._gitem
