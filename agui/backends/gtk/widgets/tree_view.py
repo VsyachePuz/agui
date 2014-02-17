@@ -26,6 +26,7 @@ class TreeView(Widget, ATreeView):
 
     def __init__(self, item = None):
         ATreeView.__init__(self, item)
+        Widget.__init__(self, item)
 
         self.tree_store_gtk = self.item.get_model()
         self.item.set_tooltip_column(self._column_tooltip)

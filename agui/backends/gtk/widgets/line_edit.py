@@ -22,6 +22,7 @@ class LineEdit(Widget, ALineEdit):
 
     def __init__(self, item = None):
         ALineEdit.__init__(self, item)
+        Widget.__init__(self, item)
 
         self.item.connect('changed', self.emit_changed)
         self.item.connect('icon-release', self._button_gtk)

@@ -22,6 +22,7 @@ class SpinBox(Widget, ASpinBox):
 
     def __init__(self, item = None):
         ASpinBox.__init__(self, item)
+        Widget.__init__(self, item)
 
         self.item.valueChanged.connect(self.emit_changed)
 

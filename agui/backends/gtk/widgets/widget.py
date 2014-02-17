@@ -14,15 +14,27 @@
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 ### END LICENSE
 
+from agui.backends.gtk.imports import *
 from agui.awidgets import AWidget
 
 class Widget(AWidget):
     def __init__(self, item = None):
-        AWidget.__init__(self, item)
+        #AWidget.__init__(self, item)
 
-        self.item.connect('button-press-event', emit_button_pressed)
-        self.item.connect('button-release-event', emit_button_released)
-        self.item.connect('popup-menu', emit_context_menu)
+        self.item.connect('button-release-event', self._button_handler)
+        self.item.connect('button-press-event', self._button_handler)
+
+    def _button_handler(self, widget, event):
+        if event.type == Gdk.EventType.BUTTON_PRESS:
+            self.button_press.emit(event.button, event.x, event.y)
+
+            if self._context_menu is not None and event.button == self.button_right:
+                self._context_menu.popup(widget, event)
+
+        elif event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS:
+            self.double_button_press.emit(event.button, event.x, event.y)
+        elif event.type == Gdk.EventType.BUTTON_RELEASE:
+            self.button_release.emit(event.button, event.x, event.y)
 
     @AWidget.hidden.getter
     def hidden(self):

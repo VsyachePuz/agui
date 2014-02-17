@@ -22,6 +22,7 @@ class CheckBox(Widget, ACheckBox):
 
     def __init__(self, item = None):
         ACheckBox.__init__(self, item)
+        Widget.__init__(self, item)
 
         self.item.stateChanged.connect(self.emit_changed)
 

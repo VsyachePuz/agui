@@ -23,6 +23,7 @@ class FileChooser(Widget, AFileChooser):
 
     def __init__(self, item):
         AFileChooser.__init__(self, item)
+        Widget.__init__(self, item)
 
         self._types = []
 

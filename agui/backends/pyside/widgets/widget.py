@@ -14,27 +14,32 @@
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 ### END LICENSE
 
+from agui.backends.pyside.imports import *
 from agui.awidgets import AWidget
 
 class Widget(AWidget):
+    button_left = QtCore.Qt.LeftButton
+    button_middle = QtCore.Qt.MiddleButton
+    button_right = QtCore.Qt.RightButton
+
     def __init__(self, item = None):
-        AWidget.__init__(self, item)
+        #AWidget.__init__(self, item)
 
         def mousePressEvent(widget, event):
-            self.emit_button_pressed(event)
+            self.button_press.emit(event.button(), event.x(), event.y())
             event.accept()
 
         def mouseReleaseEvent(widget, event):
-            self.emit_button_released(event)
+            self.button_release.emit(event.button(), event.x(), event.y())
             event.accept()
 
-        def contextMenuEvent(widget, event):
-            self.emit_context_menu(event)
+        def mouseDoubleClickEvent(widget, event):
+            self.double_button_press.emit(event.button(), event.x(), event.y())
             event.accept()
 
         self.item.mousePressEvent = mousePressEvent
-        self.item.mouseReleaseEvent = mouseReleaeeEvent
-        self.item.contextMenuEvent = contextMenuEvent
+        self.item.mouseReleaseEvent = mouseReleaseEvent
+        self.item.mouseDoubleClickEvent = mouseDoubleClickEvent
 
     @AWidget.hidden.getter
     def hidden(self):
@@ -63,3 +68,15 @@ class Widget(AWidget):
             self.item.disable()
 
         self._enabled = value
+
+    @AWidget.context_menu.setter
+    def context_menu(self, value):
+        self._context_menu = value
+
+        current_actions = self.item.actions()
+        for action in current_actions:
+            self.item.removeAction(action)
+
+        actions = self._context_menu.actions()
+        for action in actions:
+            self.item.addAction(action)

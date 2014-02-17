@@ -36,7 +36,7 @@ def setup_gui(gui, filename):
     agui.APP.gui = gui
 
     from agui.widgets import Window
-    return Window(Window.MAIN_WINDOW, 'test_window', os.path.join(path, filename))
+    return Window('test_window', os.path.join(path, filename))
 
 def button(window):
     assert (window.widgets.test_button.text == 'button'), 'Button text should equal "button"'

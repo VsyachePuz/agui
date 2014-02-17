@@ -22,6 +22,7 @@ class Action(Widget, AAction):
 
     def __init__(self, item = None):
         AAction.__init__(self, item)
+        #Widget.__init__(self, item)
 
         self.item.triggered.connect(self.emit_activated)
 

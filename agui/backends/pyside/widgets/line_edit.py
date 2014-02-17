@@ -22,6 +22,7 @@ class LineEdit(Widget, ALineEdit):
 
     def __init__(self, item = None):
         ALineEdit.__init__(self, item)
+        Widget.__init__(self, item)
 
         self.item.textChanged.connect(self.emit_changed)
         #TODO: has_clear & has_error

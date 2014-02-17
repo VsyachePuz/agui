@@ -25,6 +25,7 @@ class TreeView(Widget, ATreeView):
 
     def __init__(self, item = None):
         ATreeView.__init__(self, item)
+        Widget.__init__(self, item)
 
     @ATreeView.selected.getter
     def selected(self):

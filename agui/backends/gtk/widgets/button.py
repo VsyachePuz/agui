@@ -22,6 +22,7 @@ class Button(Widget, AButton):
 
     def __init__(self, item = None):
         AButton.__init__(self, item)
+        Widget.__init__(self, item)
 
         self.item.connect('button-press-event', self.emit_pressed)
 

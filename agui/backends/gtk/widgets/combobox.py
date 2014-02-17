@@ -22,6 +22,7 @@ class ComboBox(Widget, AComboBox):
 
     def __init__(self, item = None):
         AComboBox.__init__(self, item)
+        Widget.__init__(self, item)
 
         self.item.connect('changed', self.emit_changed)
 

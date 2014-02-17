@@ -22,6 +22,7 @@ class TextArea(Widget, ATextArea):
 
     def __init__(self, item = None):
         ATextArea.__init__(self, item)
+        Widget.__init__(self, item)
 
         self.item.connect('key-release-event', self.emit_changed)
 

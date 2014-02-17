@@ -22,6 +22,7 @@ class Slider(Widget, ASlider):
 
     def __init__(self, item = None):
         ASlider.__init__(self, item)
+        Widget.__init__(self, item)
 
         self.item.valueChanged.connect(self.emit_changed)
 

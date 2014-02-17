@@ -17,9 +17,14 @@
 from agui import Object, Signal
 
 class AWidget(Object):
+    button_left = 1
+    button_middle = 2
+    button_right = 3
+
     def __init__(self, item = None):
         self._hidden = False
         self._enabled = True
+        self._context_menu = None
 
         Object.__init__(self)
 
@@ -30,17 +35,8 @@ class AWidget(Object):
         self.check_type()
 
         self.button_press = Signal()
+        self.double_button_press = Signal()
         self.button_release = Signal()
-        self.context_menu = Signal()
-
-    def emit_button_pressed(self, *args):
-        self.button_pressed.emit(*args)
-
-    def emit_button_released(self, *args):
-        self.button_released.emit(*args)
-
-    def emit_context_menu(self, *args):
-        self.context_menu.emit(*args)
 
     def _create_item(self):
         raise NotImplementedError('Creating a backend gui item is not yet supported') #TODO
@@ -77,4 +73,10 @@ class AWidget(Object):
     def disable(self):
         self.enabled = False
 
-#TODO: more stuff like right click?
+    @property
+    def context_menu(self):
+        return self._context_menu
+
+    @context_menu.setter
+    def context_menu(self, value):
+        self._context_menu = value

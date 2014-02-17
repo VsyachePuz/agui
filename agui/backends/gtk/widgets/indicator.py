@@ -21,6 +21,7 @@ from agui.backends.gtk.widgets import Widget
 class Indicator(Widget, AIndicator):
     def __init__(self, window, name, menu, attention_icon, passive_icon):
         AIndicator.__init__(self, window, name, menu, attention_icon, passive_icon)
+        #Widget.__init__(self)
 
         self._menu.triggered.connect(self.emit_triggered)
 

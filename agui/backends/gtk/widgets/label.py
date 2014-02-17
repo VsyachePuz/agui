@@ -22,6 +22,7 @@ class Label(Widget, ALabel):
 
     def __init__(self, item = None):
         ALabel.__init__(self, item)
+        Widget.__init__(self, item)
 
     @ALabel.text.getter
     def text(self):

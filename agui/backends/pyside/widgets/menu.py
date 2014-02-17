@@ -23,6 +23,7 @@ class Menu(Widget, AMenu):
 
     def __init__(self, item = None):
         AMenu.__init__(self, item)
+        Widget.__init__(self, item)
 
         self.item.triggered(self.emit_triggered)
 
