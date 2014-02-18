@@ -23,11 +23,12 @@ class AWindow(Object):
     def emit_closed(self, *args):
         self.closed.emit()
 
-    def __init__(self, name, file):#TODO pass signal handlers
+    def __init__(self, name, file, parent=None):#TODO pass signal handlers
         Object.__init__(self)
 
         self.file = file
         self.name = name
+        self.parent = parent
 
         self._builder = None
         self._hidden = False

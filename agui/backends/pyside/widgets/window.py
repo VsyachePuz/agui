@@ -17,15 +17,16 @@
 from agui.backends.pyside.imports import *
 from agui.awidgets import AWindow
 from agui.helpers import AttrDict
-from xml.etree.cElementTree import ElementTree
 
 class Window(AWindow):
-    def __init__(self, name, file):
-        AWindow.__init__(self, name, file)
+    def __init__(self, name, file, parent=None):
+        AWindow.__init__(self, name, file, parent)
         self._ok_to_close = False
 
         self.builder = QtUiTools.QUiLoader()
         self.item = self.builder.load(self.file)
+        if self.parent is not None:
+            self.item.setParent(self.parent.item)
 
         self._types = {}
         for cls in self.classes:

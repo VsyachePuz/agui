@@ -20,12 +20,14 @@ from agui.helpers import AttrDict
 from xml.etree.cElementTree import ElementTree
 
 class Window(AWindow):
-    def __init__(self, name, file):
-        AWindow.__init__(self, name, file)
+    def __init__(self, name, file, parent=None):
+        AWindow.__init__(self, name, file, parent)
 
         self.builder = Gtk.Builder()
         self.builder.add_from_file(self.file)
         self.item = self.builder.get_object(self.name)
+        if self.parent is not None:
+            self.item.set_transient_for(self.parent.item)
 
         self.types = {}
         for cls in self.classes:
