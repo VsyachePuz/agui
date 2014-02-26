@@ -19,6 +19,7 @@ from agui.backends.gtk.widgets.widget import Widget
 from agui.backends.gtk.widgets.action import Action
 from agui.backends.gtk.widgets.button import Button
 from agui.backends.gtk.widgets.checkbox import CheckBox
+from agui.backends.gtk.widgets.color_chooser import ColorChooser
 from agui.backends.gtk.widgets.combobox import ComboBox
 from agui.backends.gtk.widgets.file_chooser import FileChooser
 from agui.backends.gtk.widgets.indicator import Indicator

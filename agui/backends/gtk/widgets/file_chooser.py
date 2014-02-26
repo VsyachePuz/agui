@@ -20,8 +20,8 @@ from agui.backends.gtk.widgets import Widget
 class FileChooser(Widget, AFileChooser):
     promote_type = 'FileChooserButton'
 
-    def __init__(self, item):
-        AFileChooser.__init__(self, item)
+    def __init__(self, item, parent = None):
+        AFileChooser.__init__(self, item, parent)
         Widget.__init__(self, item)
 
     @AFileChooser.file.getter

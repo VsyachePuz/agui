@@ -22,6 +22,9 @@ class Message(AMessage):
         widget.destroy()
 
     def message(self, window_title, title, message, icon, parent=None):
+        if parent is not None:
+            parent = parent.item
+
         dialog = Gtk.MessageDialog(parent, Gtk.DialogFlags.MODAL,
             Gtk.MessageType.INFO, Gtk.ButtonsType.OK, title)
         dialog.set_image(icon.icon(icon.size_dialog))
@@ -32,6 +35,9 @@ class Message(AMessage):
         dialog.show()
 
     def message_alt(self, window_title, message, icon, parent=None):
+        if parent is not None:
+            parent = parent.item
+
         dialog = Gtk.MessageDialog(parent, Gtk.DialogFlags.MODAL,
             Gtk.MessageType.INFO, Gtk.ButtonsType.OK, message)
         dialog.set_image(icon.icon(icon.size_dialog))
@@ -41,6 +47,9 @@ class Message(AMessage):
         dialog.show()
 
     def yes_no(self, window_title, message, parent=None):
+        if parent is not None:
+            parent = parent.item
+
         dialog = Gtk.MessageDialog(parent, Gtk.DialogFlags.MODAL,
             Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO, message)
         dialog.set_title(window_title)

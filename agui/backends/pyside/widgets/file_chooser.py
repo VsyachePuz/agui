@@ -19,10 +19,10 @@ from agui.awidgets import AFileChooser
 from agui.backends.pyside.widgets import Widget
 
 class FileChooser(Widget, AFileChooser):
-    promote_type = 'QButton'
+    promote_type = 'QPushButton'
 
-    def __init__(self, item):
-        AFileChooser.__init__(self, item)
+    def __init__(self, item, parent=None):
+        AFileChooser.__init__(self, item, parent)
         Widget.__init__(self, item)
 
         self._types = []
@@ -47,5 +47,9 @@ class FileChooser(Widget, AFileChooser):
 
         filter = '(%s)' % (filter)
 
-        (filename, selected_filter) = QtGui.QFileDialog.getOpenFileName(self, self._title, self._dir, filter)
+        parent = None
+        if self.parent is not None:
+            parent = self.parent.item
+
+        (filename, selected_filter) = QtGui.QFileDialog.getOpenFileName(parent, self._title, self._dir, filter)#TODO: parent?
         self.file = filename

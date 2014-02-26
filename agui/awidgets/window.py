@@ -87,4 +87,4 @@ class AWindow(Object):
         if widget.__class__.__name__ != clss.promote_type:
             raise TypeError('widget is not of type %s, it is %s' % (widget.__class__.__name__, clss.promote_type))
 
-        self.widgets[name] = clss(widget)
+        self.widgets[name] = clss(widget, self)

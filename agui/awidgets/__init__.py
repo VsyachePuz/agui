@@ -19,6 +19,7 @@ from agui.awidgets.widget import AWidget
 from agui.awidgets.action import AAction
 from agui.awidgets.button import AButton
 from agui.awidgets.checkbox import ACheckBox
+from agui.awidgets.color_chooser import AColorChooser
 from agui.awidgets.combobox import AComboBox
 from agui.awidgets.file_chooser import AFileChooser
 from agui.awidgets.indicator import AIndicator

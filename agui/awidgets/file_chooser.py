@@ -17,10 +17,11 @@
 from agui.awidgets import AWidget
 
 class AFileChooser(AWidget):
-    def __init__(self, item):
+    def __init__(self, item, parent = None):
         self._file = ''
         self._dir = ''
         self._title = ''
+        self.parent = None
         AWidget.__init__(self, item)
 
     @property

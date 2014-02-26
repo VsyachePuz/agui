@@ -21,7 +21,7 @@ class Icon(AIcon):
     def __init__(self, name, fallback = ''):
         AIcon.__init__(self, name, fallback)
 
-        self._use_fallback = not Gtk.IconTheme().has_icon(name)
+        self._use_fallback = not Gtk.IconTheme().get_default().has_icon(name)
 
     def icon(self, size = None):
         self.item = Gtk.Image()
