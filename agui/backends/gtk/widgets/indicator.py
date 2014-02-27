@@ -62,7 +62,9 @@ class Indicator(Widget, AIndicator):
             if self.item.get_status() != AppIndicator3.IndicatorStatus.PASSIVE:
                 self.item.set_status(AppIndicator3.IndicatorStatus.PASSIVE)
         else:
-            self.attention = True
+            if self.item.get_status() != AppIndicator3.IndicatorStatus.ACTIVE:
+                self.item.set_status(AppIndicator3.IndicatorStatus.ACTIVE)
+
         self._hidden = value
 
     @AIndicator.attention_icon.setter
