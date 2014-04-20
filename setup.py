@@ -45,7 +45,7 @@ setup(
     author='Brian Douglass',
     author_email='bhdouglass@gmail.com',
     description='One common interface for many different guis.',
-    url='http://bhdouglass.tk/agui/',
+    url='http://bhdouglass.com/agui/',
     long_description='Use one api and dunamically use different guis, provided there is a ui file.',
     package_dir = packages,
     packages = packages.keys()
