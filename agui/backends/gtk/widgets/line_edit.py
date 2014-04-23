@@ -64,3 +64,8 @@ class LineEdit(Widget, ALineEdit):
             self.item.set_icon_from_icon_name(0, name)
         else:
             self.item.set_icon_from_icon_name(0, self._last_error_gtk)
+
+    def insert_at_cursor(self, text):
+        buffer = self.item.get_buffer()
+        pos = self.item.get_position()
+        buffer.insert_text(pos, text, -1)

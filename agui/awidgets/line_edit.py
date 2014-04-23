@@ -64,3 +64,6 @@ class ALineEdit(AWidget):
 
     def show_error(self, name = None):
         raise NotImplementedError()
+
+    def insert_at_cursor(self, text):
+        raise NotImplementedError()

@@ -45,3 +45,6 @@ class LineEdit(Widget, ALineEdit):
 
     def show_error(self, name = None):
         raise NotImplementedError('show_error has not yet been implemented') #TODO
+
+    def insert_at_cursor(self, text):
+        self.item.insert(text)
