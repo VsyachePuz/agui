@@ -38,5 +38,5 @@ class TextArea(Widget, ATextArea):
         self._text = value
 
     def insert(self, text):
-        self.item.insert_at_cursor(text)
+        self.item.get_buffer().insert_at_cursor(text)
         self._text = self.text

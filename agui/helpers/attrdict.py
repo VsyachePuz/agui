@@ -18,7 +18,7 @@ class AttrDict(object):
     def __init__(self, **kwargs):
         self._dict = {}
 
-        for key, value in kwargs.iteritems():
+        for key, value in kwargs.items():
             self._dict[key] = value
 
     def __setitem__(self, key, value):
