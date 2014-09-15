@@ -14,12 +14,27 @@
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 ### END LICENSE
 
-from agui.aextra import APopup
-import pynotify
+from agui.aextras import APopup
+
+use_pynotify = False
+use_notify2 = False
+try:
+    import pynotify
+    pynotify.init('remindor')
+    use_pynotify = True
+except:
+    import notify2
+    notify2.init('remindor')
+    use_notify2 = True
 
 class Popup(APopup):
     def popup(self, app, title, message, icon):
-        n = pynotify.Notification(title, message, icon)
-        n.show()
+        if use_pynotify:
+            n = pynotify.Notification(title, message, icon)
+            n.show()
+        elif use_notify2:
+            n = notify2.Notification(title, message, icon)
+            n.show()
+
         #TODO: fallback to use tray icon messages
         #TODO: init pynotify

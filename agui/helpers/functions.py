@@ -25,9 +25,18 @@ def find_classes(module):
 
 def hex_to_rgb(value):
     value = value.lstrip('#')
-    length = len(value)
-    rvalue = tuple(int(value[i:i + length / 3], 16) for i in range(0, length, length / 3))
-    return [rvalue[0] / 256, rvalue[1] / 256, rvalue[2] / 256]
+    chunk = int(len(value) / 3)
+
+    rvalue = tuple(
+        int(value[i:i + chunk], 16)
+            for i in range(0, len(value), chunk)
+    )
+
+    return [
+        rvalue[0] / 256,
+        rvalue[1] / 256,
+        rvalue[2] / 256
+    ]
 
 def rgb_to_hex(r, g=None, b=None, a=None):
     if g == None or b == None:

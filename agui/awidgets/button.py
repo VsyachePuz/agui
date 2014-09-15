@@ -22,11 +22,13 @@ class AButton(AWidget):
         self._text = ''
         self._icon = None
         self.pressed = Signal()
+        self.activated = Signal() #alias of pressed
 
         AWidget.__init__(self, item)
 
     def emit_pressed(self, *args):
         self.pressed.emit()
+        self.activated.emit()
 
     @property
     def text(self):

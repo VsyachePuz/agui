@@ -53,3 +53,6 @@ class TreeView(Widget, ATreeView):
 
     def expand_all(self):
         self.item.expand_all()
+
+    def column_width(self, column, width):
+        self.item.get_column(column).set_min_width(width)

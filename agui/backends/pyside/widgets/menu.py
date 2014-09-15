@@ -25,7 +25,7 @@ class Menu(Widget, AMenu):
         AMenu.__init__(self, item)
         Widget.__init__(self, item)
 
-        self.item.triggered(self.emit_triggered)
+        self.item.triggered.connect(self.emit_triggered)
 
     def _create_item(self):
         self.item = QtGui.QMenu()

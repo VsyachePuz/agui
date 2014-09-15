@@ -14,10 +14,12 @@
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 ### END LICENSE
 
+from agui.backends.pyside.widgets.widget import Widget
+
 from agui.backends.pyside.widgets.action import Action
 from agui.backends.pyside.widgets.button import Button
 from agui.backends.pyside.widgets.checkbox import CheckBox
-from agui.backends.pyside.Widgets.color_chooser import ColorChooser
+from agui.backends.pyside.widgets.color_chooser import ColorChooser
 from agui.backends.pyside.widgets.combobox import ComboBox
 from agui.backends.pyside.widgets.file_chooser import FileChooser
 from agui.backends.pyside.widgets.indicator import Indicator
@@ -28,5 +30,4 @@ from agui.backends.pyside.widgets.slider import Slider
 from agui.backends.pyside.widgets.spinbox import SpinBox
 from agui.backends.pyside.widgets.text_area import TextArea
 from agui.backends.pyside.widgets.tree_view import TreeView
-from agui.backends.pyside.widgets.widget import Widget
 from agui.backends.pyside.widgets.window import Window

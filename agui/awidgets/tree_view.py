@@ -37,3 +37,6 @@ class ATreeView(AWidget):
 
     def expand_all(self):
         raise NotImplementedError()
+
+    def column_width(self, column, width):
+        raise NotImplementedError()

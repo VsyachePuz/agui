@@ -20,7 +20,7 @@ from agui.aextras import AMessage
 class Message(AMessage):
     def message(self, window_title, title, message, icon, parent=None):
         message2 = "<b>%s</b><br/><br/>%s" % (title, message)
-        self.message(window_title, message2, icon, parent)
+        self.message_alt(window_title, message2, icon, parent)
 
     def message_alt(self, window_title, message, icon, parent=None):
         self.dialog = QtGui.QMessageBox(icon.icon(), window_title, message, QtGui.QMessageBox.Close, parent=parent)
