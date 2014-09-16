@@ -26,9 +26,15 @@ class Indicator(Widget, AIndicator):
         self.item.activated.connect(self.emit_triggered)
 
     def _create_item(self):
-        self.item = QtGui.QSystemTrayIcon(self._passive_icon.icon(), self._window)
-        self.item.setContextMenu(self._menu.item)
-        self.item.show()
+        item = QtGui.QSystemTrayIcon(self._passive_icon.icon(), self._window.item)
+        item.setContextMenu(self._menu.item)
+        item.show()
+
+        #Remove menu from the menubar - allows specification of the context menu in the ui file
+        if type(self._menu.item.parent()) == QtGui.QMenuBar:
+            self._menu.item.parent().removeAction(self._menu.item.menuAction())
+
+        return item
 
     @AIndicator.attention.setter
     def attention(self, value):

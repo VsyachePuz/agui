@@ -67,6 +67,7 @@ class TreeView(Widget, ATreeView):
         return row
 
     def clear(self):
+        self._rows.clear()
         self.item.clear()
 
     def expand_all(self):

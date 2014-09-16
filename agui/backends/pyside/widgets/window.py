@@ -23,10 +23,12 @@ class Window(AWindow):
         AWindow.__init__(self, name, file, parent)
         self._ok_to_close = False
 
+        parentWidget = None
+        if parent is not None:
+            parentWidget = parent.item
+
         self.builder = QtUiTools.QUiLoader()
-        self.item = self.builder.load(self.file)
-        if self.parent is not None:
-            self.item.setParent(self.parent.item)
+        self.item = self.builder.load(self.file, parentWidget)
 
         self._types = {}
         for cls in self.classes:

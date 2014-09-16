@@ -77,6 +77,10 @@ class Widget(AWidget):
         for action in current_actions:
             self.item.removeAction(action)
 
-        actions = self._context_menu.actions()
+        actions = self._context_menu.item.actions()
         for action in actions:
             self.item.addAction(action)
+
+        #Remove menu from the menubar - allows specification of the context menu in the ui file
+        if type(self._context_menu.item.parent()) == QtGui.QMenuBar:
+            self._context_menu.item.parent().removeAction(self._context_menu.item.menuAction())
