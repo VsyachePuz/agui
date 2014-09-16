@@ -85,6 +85,14 @@ class AWindow(Object):
             raise TypeError('cannot promote to %s' % (clss.__class__.__name__))
 
         if widget.__class__.__name__ != clss.promote_type:
-            raise TypeError('widget is not of type %s, it is %s' % (widget.__class__.__name__, clss.promote_type))
+            raise_error = True
+            if hasattr(clss, 'promote_type_alt'):
+                if widget.__class__.__name__ != clss.promote_type_alt:
+                    raise TypeError('widget is not of type %s, it is %s' % (widget.__class__.__name__, clss.promote_type_alt))
+                else:
+                    raise_error = False
+
+            if raise_error:
+                raise TypeError('widget is not of type %s, it is %s' % (widget.__class__.__name__, clss.promote_type))
 
         self.widgets[name] = clss(widget, self)

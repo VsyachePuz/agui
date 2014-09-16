@@ -23,7 +23,8 @@ class Message(AMessage):
         self.message_alt(window_title, message2, icon, parent)
 
     def message_alt(self, window_title, message, icon, parent=None):
-        self.dialog = QtGui.QMessageBox(icon.icon(), window_title, message, QtGui.QMessageBox.Close, parent=parent)
+        self.dialog = QtGui.QMessageBox(None, window_title, message, QtGui.QMessageBox.Close, parent=parent)
+        self.dialog.setPixmap(icon.icon().pixmap(32, 32))
         self.dialog.show()
 
     def yes_no(self, window_title, message, icon=None, parent=None):

@@ -14,12 +14,14 @@
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 ### END LICENSE
 
+from agui import APP
 from agui.backends.pyside.imports import *
 from agui.awidgets import AFileChooser
 from agui.backends.pyside.widgets import Widget
 
 class FileChooser(Widget, AFileChooser):
     promote_type = 'QPushButton'
+    promote_type_alt = 'QToolButton'
 
     def __init__(self, item, parent=None):
         AFileChooser.__init__(self, item, parent)
