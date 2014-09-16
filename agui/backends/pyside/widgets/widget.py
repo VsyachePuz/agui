@@ -63,9 +63,9 @@ class Widget(AWidget):
     @enabled.setter
     def enabled(self, value):
         if value:
-            self.item.enable()
+            self.item.setDisabled(False)
         else:
-            self.item.disable()
+            self.item.setDisabled(True)
 
         self._enabled = value
 

@@ -14,6 +14,7 @@
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 ### END LICENSE
 
+from agui.backends.pyside.imports import *
 from agui.awidgets import ALineEdit
 from agui.backends.pyside.widgets import Widget
 
@@ -25,7 +26,34 @@ class LineEdit(Widget, ALineEdit):
         Widget.__init__(self, item)
 
         self.item.textChanged.connect(self.emit_changed)
-        #TODO: has_clear & has_error
+
+    @ALineEdit.has_error.setter
+    def has_error(self, value):
+        self._has_error = value
+
+        self._error_button = None
+        if self._has_error:
+            name = '%s_error_button' % self.item.objectName()
+            self._error_button = self.item.parent().findChild(QtGui.QPushButton, name)
+            if self._error_button is None:
+                self._error_button = self.item.parent().findChild(QtGui.QToolButton, name)
+
+                if self._error_button is None:
+                    raise IndexError('Could not find button named "%s"' % name)
+
+    @ALineEdit.has_clear.setter
+    def has_clear(self, value):
+        self._has_clear = value
+
+        self._clear_button = None
+        if self._has_clear:
+            name = '%s_clear_button' % self.item.objectName()
+            self._clear_button = self.item.parent().findChild(QtGui.QPushButton, name)
+            if self._clear_button is None:
+                self._clear_button = self.item.parent().findChild(QtGui.QToolButton, name)
+
+            if self._clear_button is not None:
+                self._clear_button.pressed.connect(self.clear)
 
     @ALineEdit.text.getter
     def text(self):
@@ -41,10 +69,12 @@ class LineEdit(Widget, ALineEdit):
         self.item.setFocus()
 
     def hide_error(self):
-        raise NotImplementedError('hide_error has not yet been implemented') #TODO
+        if self._has_error and self._error_button is not None:
+            self._error_button.hide()
 
-    def show_error(self, name = None):
-        raise NotImplementedError('show_error has not yet been implemented') #TODO
+    def show_error(self, name = None):#TODO: name
+        if self._has_error and self._error_button is not None:
+            self._error_button.show()
 
     def insert_at_cursor(self, text):
         self.item.insert(text)

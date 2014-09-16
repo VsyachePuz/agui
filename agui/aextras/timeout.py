@@ -26,10 +26,13 @@ class ATimeout(Object):
     def _function(self):
         self.function(*self.args)
 
+    def started(self):
+        return (self.item is not None)
+
     def start(self):
-        if self.item is not None:
+        if self.started():
             raise RuntimeError('Cannot start a timeout that is already started')
 
     def stop(self):
-        if self.item is None:
+        if not self.started():
             raise RuntimeError('Cannot stop a timeout that has not been started')
