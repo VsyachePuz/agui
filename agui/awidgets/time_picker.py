@@ -14,21 +14,23 @@
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 ### END LICENSE
 
-from agui.awidgets.widget import AWidget
+from agui import Signal
+from agui.awidgets import AWidget
 
-from agui.awidgets.action import AAction
-from agui.awidgets.button import AButton
-from agui.awidgets.checkbox import ACheckBox
-from agui.awidgets.color_chooser import AColorChooser
-from agui.awidgets.combobox import AComboBox
-from agui.awidgets.file_chooser import AFileChooser
-from agui.awidgets.indicator import AIndicator
-from agui.awidgets.label import ALabel
-from agui.awidgets.line_edit import ALineEdit
-from agui.awidgets.menu import AMenu
-from agui.awidgets.slider import ASlider
-from agui.awidgets.spinbox import ASpinBox
-from agui.awidgets.text_area import ATextArea
-from agui.awidgets.tree_view import ATreeView
-from agui.awidgets.time_picker import ATimePicker
-from agui.awidgets.window import AWindow
+class ATimePicker(AWidget):
+    def __init__(self, item = None):
+        self._time = False
+        self.changed = Signal()
+
+        AWidget.__init__(self, item)
+
+    def emit_changed(self, *args):
+        self.changed.emit(self.time)
+
+    @property
+    def time(self):
+        return self._time
+
+    @time.setter
+    def time(self, value):
+        self._time = value

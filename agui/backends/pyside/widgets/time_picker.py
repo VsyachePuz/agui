@@ -14,21 +14,30 @@
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 ### END LICENSE
 
-from agui.awidgets.widget import AWidget
+from agui.backends.pyside.imports import *
+from agui.awidgets import ATimePicker
+from agui.backends.pyside.widgets import Widget
 
-from agui.awidgets.action import AAction
-from agui.awidgets.button import AButton
-from agui.awidgets.checkbox import ACheckBox
-from agui.awidgets.color_chooser import AColorChooser
-from agui.awidgets.combobox import AComboBox
-from agui.awidgets.file_chooser import AFileChooser
-from agui.awidgets.indicator import AIndicator
-from agui.awidgets.label import ALabel
-from agui.awidgets.line_edit import ALineEdit
-from agui.awidgets.menu import AMenu
-from agui.awidgets.slider import ASlider
-from agui.awidgets.spinbox import ASpinBox
-from agui.awidgets.text_area import ATextArea
-from agui.awidgets.tree_view import ATreeView
-from agui.awidgets.time_picker import ATimePicker
-from agui.awidgets.window import AWindow
+class TimePicker(Widget, ATimePicker):
+    type = 'QTimeEdit'
+    format = 'hh:mm'
+
+    def __init__(self, item = None):
+        ATimePicker.__init__(self, item)
+        Widget.__init__(self, item)
+
+        self.item.timeChanged.connect(self.emit_changed)
+
+    @ATimePicker.time.getter
+    def time(self):
+        self._time = self.item.time().toString(self.format)
+        return self._time
+
+    @time.setter
+    def time(self, value):
+        time = QtCore.QTime()
+        if value is not None:
+            time = QtCore.QTime.fromString(value, self.format)
+
+        self.item.setTime(time)
+        self._time = value

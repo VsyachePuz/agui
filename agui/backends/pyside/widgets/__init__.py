@@ -30,4 +30,5 @@ from agui.backends.pyside.widgets.slider import Slider
 from agui.backends.pyside.widgets.spinbox import SpinBox
 from agui.backends.pyside.widgets.text_area import TextArea
 from agui.backends.pyside.widgets.tree_view import TreeView
+from agui.backends.pyside.widgets.time_picker import TimePicker
 from agui.backends.pyside.widgets.window import Window
