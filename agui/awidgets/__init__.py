@@ -31,4 +31,5 @@ from agui.awidgets.spinbox import ASpinBox
 from agui.awidgets.text_area import ATextArea
 from agui.awidgets.tree_view import ATreeView
 from agui.awidgets.time_picker import ATimePicker
+from agui.awidgets.date_picker import ADatePicker
 from agui.awidgets.window import AWindow
